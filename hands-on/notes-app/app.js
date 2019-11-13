@@ -3,7 +3,7 @@ const validator = require('validator');
 const chalk = require('chalk');
 const yargs = require('yargs');
 
-const getNotes = require('./notes');
+const noteUtility = require('./notes');
 
 // fs.writeFileSync('notes.txt', 'This file was created by node.js.');
 // fs.appendFileSync('notes.txt', 'This text is appended');
@@ -16,7 +16,7 @@ yargs.command({
     command: 'add',
     description: 'Add a new note',
     builder: {
-        title:{
+        title: {
             description: 'Note Title',
             demandOption: true,
             type: 'string'
@@ -28,7 +28,8 @@ yargs.command({
         }
     },
     handler: (argv) => {
-        console.log('Adding a new note - ', argv);
+        console.log(`Adding a new note with title - ${argv.title} and body - ${argv.body}`);
+        noteUtility.addNote(argv.title, argv.body);
     }
 });
 
@@ -58,6 +59,7 @@ yargs.command({
         console.log('Listing a new note');
     }
 });
+
 yargs.parse();
 //console.log(warning('Warning'));
 //console.log(error(validator.isEmail(getNotes())));
@@ -70,6 +72,3 @@ yargs.parse();
     '--title=Temp Title'
   ]*/
 //console.log(yargs.argv); //{ _: [ 'add' ], title: 'Temp Title', '$0': 'app.js' }
-
-
-
