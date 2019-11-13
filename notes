@@ -1,0 +1,54 @@
+REPL : read–eval–print loop
+
+INTRO
+Similar to 'window{}' in browser we have 'global' in Node
+In browser we have 'document' to access DOM. In node we have a similar thing 'process', which gives access to various properties/methods to manipulate the node process that is running.
+
+Why NodeJs
+-> non-blocking I/O
+-> event-driven
+
+Importing node core modules, npm modules, own files
+node core modules -> fs, 
+own files -> export functions/variables and require them,
+package.json -> npm modules
+
+script watching -> nodemon
+
+get input from users using command line
+In node we have access to the process object 
+process.argv -> will give the list of arguments passed in the command line
+
+arguments parsing from 'process.argv' with 'Yargs'
+
+    //create an add command
+    yargs.command({
+        command: 'add',
+        description: 'Add a new note',
+        builder: {
+            title:{
+                description: 'Note Title',
+                demandOption: true,
+                type: 'string'
+            },
+            body: {
+                description: 'Note Body',
+                demandOption: true,
+                type: 'string'
+            }
+        },
+        handler: (argv) => {
+            console.log('Adding a new note - ', argv.title);
+        }
+    });
+
+yargs need to parse the arguments so we need to explicitly call
+yargs.parse() if we are not invoking 'yargs.argv'
+    avinash notes-app $ node app.js add --title="Random" --body="No Body"
+    Adding a new note -  { _: [ 'add' ], title: 'Random', body: 'No Body', '$0': 'app.js' }
+
+
+STORING DATA WITH json
+
+
+
