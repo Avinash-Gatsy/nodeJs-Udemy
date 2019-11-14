@@ -61,9 +61,12 @@ yargs.command({
 //create an list command
 yargs.command({
     command: 'list',
-    description: 'List a new note',
+    description: 'List notes',
     handler: () => {
-        console.log('Listing a new note');
+        console.log('Listing all notes');
+        noteUtility.listNotes().forEach(title => {
+            console.log(chalk.keyword('orange')(title));
+        });
     }
 });
 

@@ -41,6 +41,14 @@ const loadNotes = () => {
     }
 };
 
+const listNotes = () => {
+    const notes = loadNotes();
+    //notes.map(note => note.title);
+    return notes.reduce((acc, note)=>{
+        return acc.concat(note.title);
+    },[]);
+};
+
 const removeNote = (title) => {
     const currentNotes = loadNotes();
     const updatedNotes = currentNotes.filter((note) => {
@@ -57,5 +65,6 @@ const removeNote = (title) => {
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    listNotes: listNotes
 };
