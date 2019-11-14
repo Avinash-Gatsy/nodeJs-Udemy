@@ -1,8 +1,13 @@
 const fs = require('fs');
+const chalk = require('chalk');
 
-const getNotes = function () {
-    return 'Notes';
+const error = chalk.red.inverse;
+const success = chalk.green.inverse;
+
+const getNotes = function(){
+    return 'notes';
 };
+
 const addNote = function (title, body) {
     const notes = loadNotes();
     const duplicateNotes = notes.filter((note) => {
@@ -14,9 +19,9 @@ const addNote = function (title, body) {
             body: body
         });
         saveNotes(notes);
-        console.log('Note successfully added');
+        console.log(success('Note successfully added'));
     }else{
-        console.log('Note with same title found. Change the title and try again');
+        console.log(error('Note with same title found. Change the title and try again'));
     }
     
 };
@@ -36,7 +41,21 @@ const loadNotes = function () {
     }
 };
 
+const removeNote = function(title){
+    const currentNotes = loadNotes();
+    const updatedNotes = currentNotes.filter((note) => {
+        return note.title.toLowerCase() !== title.toLowerCase();
+    });
+    if(currentNotes.length > updatedNotes.length){
+        console.log(success(`removed note with title - ${title}`));
+        saveNotes(updatedNotes);
+    }else{
+        console.log(error(`No note found with title - ${title}`));
+    }
+};
+
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 };
