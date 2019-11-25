@@ -50,5 +50,20 @@ yargs.parse() if we are not invoking 'yargs.argv'
 
 STORING DATA WITH json
 
+Debug node application
+
+use debugger in code
+open chrome://inspect and then inspect
+node code is actually wrapped inside a main() when its executed
+we can add the worspace folder in chrome for debugging
+$ node inspect app.js
+
+WEATHER app
+https://darksky.net/dev
+mapbox -> for geohashing
+
+making http requests -> "request" : npm module
+
+
 
 
